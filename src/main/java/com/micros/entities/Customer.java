@@ -21,8 +21,11 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long customerId;
 
-	@Column(name = "full_name")
-	private String name;
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
 	
 	private String email;
 	
@@ -44,7 +47,7 @@ public class Customer {
 
 	public Customer(String name, String email, long phoneNumber, String address) {
 		super();
-		this.name = name;
+		this.firstName = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
@@ -58,12 +61,12 @@ public class Customer {
 		this.customerId = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String name) {
+		this.firstName = name;
 	}
 
 	public String getEmail() {
@@ -96,5 +99,37 @@ public class Customer {
 
 	public void setOrder(List<Order> order) {
 		this.order = order;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public long getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(long pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 }
