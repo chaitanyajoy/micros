@@ -8,14 +8,15 @@ import com.micros.repository.OrderRepo;
 import com.micros.services.OrderService;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderRepo orderRepo;
-	
+
 	@Override
 	public void saveOrder(Order order) {
 		orderRepo.save(order);
 	}
 
+	
 }

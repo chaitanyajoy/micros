@@ -30,6 +30,7 @@ public class Order {
 	private double cost;
 	private String stage; // BILLING, INPROGRESS, COMPLETED
 	private String timestamp;
+	
 
 	public Order(String characters, Customer customer, double cost) {
 		super();

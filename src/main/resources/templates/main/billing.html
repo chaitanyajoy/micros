@@ -10,14 +10,25 @@
 		<div class="row">
 			<div class="col-md-4 order-md-2 mb-4">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
-					<span class="text-muted">Your cart</span>
+					<span class="text-muted">Your order</span>
 					<span class="badge badge-secondary badge-pill">3</span>
 				</h4>
 				<ul class="list-group mb-3">
 					<li class="list-group-item d-flex justify-content-between lh-condensed">
 						<div>
-							<h6 class="my-0" th:text="${characters}"></h6>
-							<small class="text-muted">characters to carve</small>
+
+							<a id="modal-323949" href="#modal-container-323949" role="button" class="btn"
+								data-toggle="modal">
+								<div class="nav nav-pills">
+									<h6 th:object="${orders}" class="my-0" th:text="${order.characters}"
+										th:value="${order.characters}" id="orderText"></h6>
+									</br>
+									<div class='btn btn-primary '>
+										edit
+									</div>
+								</div>
+							</a>
+
 						</div>
 						<span class="text-muted">₹999</span>
 					</li>
@@ -45,10 +56,47 @@
 					</div>
 				</form>
 			</div>
+			<!-- ********************BOOTSTRAP MODAL ******************-->
+			<div class="modal fade" id="modal-container-323949" role="dialog" aria-labelledby="myModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="myModalLabel">
+								Note
+							</h5>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							Enter Characters to be carved
+						</div>
+						<input th:field="${orders.characters}" type="text" class="form-control" placeholder=""
+							required="" id="characters">
+						<div class="invalid-feedback">
+							Please enter a valid characters
+						</div>
+						<div class="modal-footer">
+
+							<button href='#' target='_blank' type="button" onclick="setNewValueCharacters()"
+								class="btn btn-primary">
+								Save
+							</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Close
+							</button>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">Billing address</h4>
 				<!-- ********* CUSTOMER DETAILS FORM STARTS********* -->
-				<form class="needs-validation" novalidate="" th:object="${customer}" method="POST" action="">
+				<form class="needs-validation" novalidate="" th:object="${customer}" method="POST" action="/checkout">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">First name</label>
@@ -92,7 +140,8 @@
 						</div>
 						<div class="mb-3">
 							<label for="address">Address</label>
-							<input th:field="${customer.address}" type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+							<input th:field="${customer.address}" type="text" class="form-control" id="address"
+								placeholder="1234 Main St" required="">
 							<div class="invalid-feedback">
 								Please enter your shipping address.
 							</div>
@@ -127,7 +176,9 @@
 								<div class="invalid-feedback">
 									Zip code required.
 								</div>
+
 							</div>
+					
 						</div>
 
 					</div>
@@ -143,6 +194,24 @@
 		</div>
 	</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		function setNewValueCharacters() {
+			var characters = document.getElementById("characters").value;
+			document.getElementById("orderText").textContent = characters;
+			$('#modal-container-323949').modal('hide');
+		}
+	</script>
+
 
 
 </body>
