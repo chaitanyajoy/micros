@@ -9,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.micros.dto.PaymentDto;
 import com.micros.entities.Customer;
 import com.micros.entities.Order;
 import com.micros.services.CustomerService;
 import com.micros.services.OrderService;
-import com.micros.services.impl.OrderServiceImpl;
 import com.micros.utils.BillingUtils;
 
 @Controller
